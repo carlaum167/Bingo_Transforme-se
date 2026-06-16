@@ -26,8 +26,51 @@ function sortearNumero() {
 
     let indice = Math.floor(Math.random() * numeros.length);
     let numeroSorteado = numeros[indice];
-    sorteados.push(numeroSoerteado);
+    sorteados.push(numeroSorteado);
     numeros.splice(indice, 1);
 
     console.log(`Número sorteado: ${numeroSorteado}`);
 }
+
+function exibirSorteados() {
+    if (sorteados.length === 0) {
+        console.log("Nenhum número foi sorteado ainda.");
+    } else {
+        console.log("Números sorteados:", sorteados.join(", "));
+    }
+}
+
+function menu() {
+    console.log("\nMenu:");
+    console.log("1. Iniciar Bingo");
+    console.log("2. Sortear Número");
+    console.log("3. Exibir Números Sorteados");
+    console.log("4. Sair");
+    rl.question("Escolha uma opção: ", (opcao) => {
+        switch (opcao) {
+            case '1':
+                iniciarBingo();
+                console.log("Bingo iniciado!");
+                menu();
+                break;
+            case '2':
+                sortearNumero();
+                menu();
+                break;
+            case '3':
+                exibirSorteados();
+                menu();
+                break;
+            case '4':
+                console.log("Saindo do Bingo...");
+                rl.close();
+                break;
+            default:
+                console.log("Opção inválida!");
+                menu();
+        }
+    })
+    
+}
+
+ return menu();
