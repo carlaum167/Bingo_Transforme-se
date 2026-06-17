@@ -19,10 +19,18 @@ function iniciarBingo() {
 }
 
 function sortearNumero() {
-    if (numeros.length === 0) {
-        console.log("Todos os números foram sorteados!");
+    
+    if (numeros.length === 0 && sorteados.length === 0) {
+        console.log("Nenhum número foi sorteado ainda. Inicie o bingo primeiro.");
         return;
     }
+
+    if (numeros.length === 0) {
+        console.log("Todos os números já foram sorteados!");
+        return;
+    }
+
+    console.log("Sorteando número...");
 
     let indice = Math.floor(Math.random() * numeros.length);
     let numeroSorteado = numeros[indice];
@@ -40,12 +48,18 @@ function exibirSorteados() {
     }
 }
 
+function reiniciarBingo() {
+    iniciarBingo();
+    console.log("\nBingo reiniciado!");
+}
+
 function menu() {
     console.log("\nMenu:");
     console.log("1. Iniciar Bingo");
     console.log("2. Sortear Número");
     console.log("3. Exibir Números Sorteados");
-    console.log("4. Sair");
+    console.log("4. Reiniciar Bingo");
+    console.log("5. Sair");
     rl.question("Escolha uma opção: ", (opcao) => {
         switch (opcao) {
             case '1':
@@ -62,6 +76,10 @@ function menu() {
                 menu();
                 break;
             case '4':
+                reiniciarBingo();
+                menu();
+                break;
+            case '5':
                 console.log("Saindo do Bingo...");
                 rl.close();
                 break;
